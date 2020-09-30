@@ -18,20 +18,14 @@ export class PessoaService {
   }
 
   public detail(id: number): Observable<Pessoa> {
-    return this.httpClient.get<Pessoa>(this.pessoaURL + `change/${id}`);
+    return this.httpClient.get<Pessoa>(this.pessoaURL + `${id}`);
   }
 
   public save(pessoa: Pessoa): Observable<any> {
     return this.httpClient.post<any>(this.pessoaURL, Pessoa);
   }
 
-  public update(pessoa: Pessoa): Observable<any> {
-    return this.httpClient.put<any>(this.pessoaURL, Pessoa);
-  }
-
-
   public delete(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.pessoaURL + `${id}`);
   }
-
 }

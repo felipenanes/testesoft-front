@@ -1,18 +1,18 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
+<div class="panel panel-primary conteiner">
+    <div class="panel-heading"> 
         <div class="col-3">      
-            <h2 style="float: left;">Employee List</h2>
-            <button (click)="criarPessoa()" class="btn btn-success" style="float: right; margin-top: 5px;">+ Novo</button>
+            <h2 style="float: left;">People's List</h2>
+            <a routerLink="/novo" class="btn btn-success" routerLinkActive="active" style="float: right; margin-top: 5px;">+ NEW PERSON</a>
         </div>
     </div>
     <div class="panel-body">
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Sexo</th>
+            <th>Name</th>
+            <th>Sex</th>
             <th>Email</th>
-            <th>Ações</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -20,9 +20,8 @@
             <td>{{pessoa.name}}</td>
             <td>{{pessoa.sex}}</td>
             <td>{{pessoa.email}}</td>
-            <td><button (click)="deletarPessoa(pessoa.id)" class="btn btn-danger">Deletar</button>
-                <button (click)="updateEmployee(pessoa.id)" class="btn btn-info" style="margin-left: 10px">Atualizar</button>
-                <button (click)="employeeDetails(pessoa.id)" class="btn btn-info" style="margin-left: 10px">Detalhes</button>
+            <td><button (click)="deletarPessoa(pessoa.id)" class="btn btn-danger">Delete</button>
+                <button (click)="updateEmployee(pessoa.id)" class="btn btn-info" style="margin-left: 10px">Edit</button>
             </td>
           </tr>
         </tbody>

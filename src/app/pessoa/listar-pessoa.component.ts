@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { Pessoa } from '../models/pessoa';
 import { PessoaService } from '../service/pessoa.service';
@@ -12,7 +13,7 @@ export class ListarPessoaComponent implements OnInit {
 
   pessoas: Pessoa[] = [];
 
-  constructor(private pessoaService: PessoaService, private toastr: ToastrService) { }
+  constructor(private pessoaService: PessoaService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
     this.carregarPessoas();
@@ -33,8 +34,8 @@ export class ListarPessoaComponent implements OnInit {
     )
   }
 
-  criarPessoa(): void {
-      
+  updateEmployee(id : number): void {
+    this.router.navigate([`detalhe/${id}`]);  
   }
 
   deletarPessoa(id: number): void {

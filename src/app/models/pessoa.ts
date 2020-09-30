@@ -7,6 +7,7 @@ export class Pessoa {
     naturality: string;
     nationality: string;
     cpf: string;
+    
 
     constructor(name, sex, email, birthDate, naturality, nationality, cpf) {
         this.name = name;
