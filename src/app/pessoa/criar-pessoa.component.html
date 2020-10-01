@@ -1,58 +1,69 @@
 <div class="container col-8">
 <h1 class="container col-4">Person Registry</h1>
 
-<form (ngSubmit)="onSubmit()" #criarPessoaForm="ngForm">
+<form [formGroup]="criarPessoa" (ngSubmit)="onSubmit()" #criarPessoaForm="ngForm">
     <div class="form-group col-4 container">
         <label for="name">Name</label>
-        <input type="text" class="form-control" name="name"
-        required
-        [(ngModel)]="model.name" name="name"
-        #name="ngModel">
+        <input type="text" class="form-control" formControlName="name" [(ngModel)]="model.name">
     </div>
-        
+
+    <div class="form-control-feedback" *ngIf="(criarPessoa.get('name').dirty || criarPessoa.get('name').touched)" >
+        <p class="alert alert-danger container col-4" *ngIf="criarPessoa.get('name').hasError('required')">Name is required</p>
+        <p class="alert alert-danger container col-4" *ngIf="criarPessoa.get('name').hasError('minlength')">Name can't be less then 4 chars long</p>
+    </div>
+    
     <div class="form-group col-4 container">
         <label for="sex">Sex</label>
         <input type="text" class="form-control" id="sex"
         [(ngModel)]="model.sex" name="sex"
-        #name="ngModel">
+        #name="ngModel"
+        [ngModelOptions]="{standalone: true}">
     </div>
         
     <div class="form-group col-4 container">
         <label for="email">Email</label>
         <input type="text" class="form-control" id="email"
-        [(ngModel)]="model.email" name="email"
-        #name="ngModel">
+        [(ngModel)]="model.email" formControlName="email">
+    </div>
+
+    <div class="form-control-feedback" *ngIf="(criarPessoa.get('email').dirty || criarPessoa.get('email').touched)" >
+        <p class="alert alert-danger container col-4" *ngIf="criarPessoa.get('email').hasError('email')">Insert a Valid Email Address</p>
     </div>
 
     <div class="form-group col-4 container">
         <label for="birthDate">Birth Date</label>
-        <input type="date" class="form-control" id="birthDate"
-        required
-        [(ngModel)]="model.birthDate" name="birthDate"
-        #name="ngModel">
+        <input type="date" class="form-control" id="birthDate" [(ngModel)]="model.birthDate" formControlName="birthDate">
+    </div>
+
+    <div class="form-control-feedback" *ngIf="(criarPessoa.get('birthDate').dirty || criarPessoa.get('birthDate').touched)" >
+        <p class="alert alert-danger container col-4" *ngIf="criarPessoa.get('birthDate').hasError('required')">Insert your BirthDate</p>
     </div>
 
     <div class="form-group col-4 container">
         <label for="naturality">Naturality</label>
         <input type="text" class="form-control" id="naturality"
         [(ngModel)]="model.naturality" name="naturality"
-        #name="ngModel">
+        #name="ngModel"
+        [ngModelOptions]="{standalone: true}">
     </div>
 
     <div class="form-group col-4 container">
         <label for="nationality">Nationality</label>
         <input type="text" class="form-control" id="nationality"
         [(ngModel)]="model.nationality" name="nationality"
-        #name="ngModel">
+        #name="ngModel"
+        [ngModelOptions]="{standalone: true}">
     </div>
 
     <div class="form-group col-4 container">
         <label for="cpf">CPF</label>
-        <input type="text" class="form-control" id="cpf"
-        required
-        [(ngModel)]="model.cpf" name="cpf"
-        #name="ngModel">
+        <input type="text" class="form-control" id="cpf" [(ngModel)]="model.cpf" formControlName="cpf">
     </div>
+
+    <div class="form-control-feedback" *ngIf="(criarPessoa.get('cpf').dirty || criarPessoa.get('cpf').touched)" >
+        <p class="alert alert-danger container col-4" *ngIf="criarPessoa.get('cpf').hasError('required')">Insert your CPF</p>
+    </div>
+
 
     <div class="form-group col-4 container">
         <button type="submit" class="btn btn-success" [disabled]="!criarPessoaForm.form.valid">Submit</button>
