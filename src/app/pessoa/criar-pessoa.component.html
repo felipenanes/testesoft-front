@@ -13,13 +13,12 @@
     </div>
     
     <div class="form-group col-4 container">
-        <label for="sex">Sex</label>
-        <input type="text" class="form-control" id="sex"
-        [(ngModel)]="model.sex" name="sex"
-        #name="ngModel"
-        [ngModelOptions]="{standalone: true}">
+        <label for="name">Sex</label>
+        <select class="select col-12 container" name="sex" [(ngModel)]="model.sex" #name="ngModel" [ngModelOptions]="{standalone: true}" style="padding: 10px;">
+            <option *ngFor="let option of sexOptions" value={{option}}>{{option}}</option>
+        </select> 
     </div>
-        
+
     <div class="form-group col-4 container">
         <label for="email">Email</label>
         <input type="text" class="form-control" id="email"
@@ -62,6 +61,9 @@
 
     <div class="form-control-feedback" *ngIf="(criarPessoa.get('cpf').dirty || criarPessoa.get('cpf').touched)" >
         <p class="alert alert-danger container col-4" *ngIf="criarPessoa.get('cpf').hasError('required')">Insert your CPF</p>
+        <p class="alert alert-danger container col-4" *ngIf="criarPessoa.get('cpf').hasError('cpfInvalid')">Too Short, CPF must have 11 caracters</p>
+        <p class="alert alert-danger container col-4" *ngIf="criarPessoa.get('cpf').hasError('cpfInvalidNumbers')">CPF must be only numbers!</p>
+        <p class="alert alert-danger container col-4" *ngIf="criarPessoa.get('cpf').hasError('cpfNotValid')">This CPF is not valid</p>
     </div>
 
 
